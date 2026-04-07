@@ -1,0 +1,1 @@
+from configs.settings import APP_CFG, MODEL_CFG
