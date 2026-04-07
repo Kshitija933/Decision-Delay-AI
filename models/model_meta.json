@@ -1,0 +1,63 @@
+{
+  "input_dim": 23,
+  "num_classes": 6,
+  "classes": [
+    "Decision Fatigue",
+    "Fear of Failure",
+    "Lack of Immediate Reward",
+    "Overwhelm / Complexity",
+    "Past Failure Loop",
+    "Perfectionism"
+  ],
+  "feature_cols": [
+    "task_difficulty",
+    "time_to_reward",
+    "past_failure_loops",
+    "self_efficacy",
+    "stress_level",
+    "goal_clarity",
+    "social_support",
+    "intrinsic_motivation",
+    "habit_strength",
+    "distraction_level",
+    "reward_proximity",
+    "failure_weight",
+    "motivation_deficit",
+    "cognitive_load",
+    "support_index",
+    "reward_perception",
+    "efficacy_clarity",
+    "burnout_index",
+    "action_potential",
+    "barrier_score",
+    "domain_Career Choices",
+    "domain_Fitness",
+    "domain_Studying"
+  ],
+  "hidden_dims": [
+    1024,
+    512,
+    256,
+    128,
+    64,
+    32
+  ],
+  "dropout": 0.18,
+  "test_accuracy": 0.8187,
+  "best_val_acc": 0.8299,
+  "trained_at": "2026-04-03T23:21:42.987896",
+  "epochs": 200,
+  "batch_size": 256,
+  "optimizer": "AdamW + Warmup-Cosine LR",
+  "loss_mix": "75% CE(smooth=0.05) + 25% MSE",
+  "regularization": "Dropout 0.25 + BatchNorm + GradClip(1.0) + WD=1e-4",
+  "dataset_size": 25000,
+  "engineered_features": [
+    "reward_proximity",
+    "failure_weight",
+    "motivation_deficit",
+    "cognitive_load",
+    "support_index",
+    "reward_perception"
+  ]
+}
