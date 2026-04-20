@@ -39,25 +39,25 @@ class ModelConfig:
     meta_path:    str = str(DIRS["models"] / "model_meta.json")
     ckpt_dir:     str = str(DIRS["models"] / "checkpoints")
 
-    # ── Architecture — 6-layer backbone ─────────────────
+    # ── Architecture — 4-layer backbone ─────────────────
     # Wider + deeper for 93-97% target
-    hidden_dims:  List[int] = field(default_factory=lambda: [1024, 512, 256, 128, 64, 32])
-    dropout:      float = 0.18          # Reduced for larger model
-    dropout_head: float = 0.08          # Lighter in classification head
+    hidden_dims:  List[int] = field(default_factory=lambda: [512, 512, 512, 512])
+    dropout:      float = 0.10          # Reduced for larger model
+    dropout_head: float = 0.05          # Lighter in classification head
 
     # ── Training hyperparameters ─────────────────────────
-    epochs:        int   = 200
-    batch_size:    int   = 256          # Larger batch → stable BN
-    learning_rate: float = 1e-3         # Peak LR (after warmup)
+    epochs:        int   = 150
+    batch_size:    int   = 64           # Smaller batch for more updates
+    learning_rate: float = 5e-4         # Smoother convergence
     min_lr:        float = 1e-6         # Cosine annealing floor
     weight_decay:  float = 1e-4
-    warmup_epochs: int   = 15           # Linear warmup
+    warmup_epochs: int   = 10           # Linear warmup
     patience:      int   = 30           # Early stopping
     grad_clip:     float = 1.0
 
     # ── Loss configuration ───────────────────────────────
-    alpha:          float = 0.75        # Weight: alpha*CE + (1-alpha)*MSE
-    label_smooth:   float = 0.05        # CrossEntropy label smoothing
+    alpha:          float = 0.98        # Weight: alpha*CE + (1-alpha)*MSE
+    label_smooth:   float = 0.02        # CrossEntropy label smoothing
     mixup_alpha:    float = 0.2         # Mixup augmentation strength
     mixup_prob:     float = 0.5         # Probability of applying mixup
 
@@ -79,7 +79,7 @@ class ModelConfig:
 @dataclass
 class AppConfig:
     # Dataset
-    n_synthetic_samples: int    = 25_000
+    n_synthetic_samples: int    = 15_000
     dataset_path:        str    = str(DIRS["proc"] / "decision_delay_processed.csv")
     raw_path:            str    = str(DIRS["raw"]  / "decision_delay_raw.csv")
 
