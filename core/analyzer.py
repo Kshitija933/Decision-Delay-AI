@@ -107,12 +107,12 @@ class DecisionDelayNet(nn.Module):
         input_dim:   int,
         num_classes: int = 6,
         hidden_dims: List[int] = None,
-        dropout:     float = 0.18,
-        dropout_head:float = 0.08,
+        dropout:     float = 0.10,
+        dropout_head:float = 0.05,
     ):
         super().__init__()
         if hidden_dims is None:
-            hidden_dims = MODEL_CFG.hidden_dims   # [1024,512,256,128,64,32]
+            hidden_dims = MODEL_CFG.hidden_dims
 
         # ── Input projection ──────────────────────────────────────────
         self.input_proj = nn.Sequential(
@@ -243,13 +243,18 @@ class DelayAnalyzer:
         self._loaded       = False
 
     def is_ready(self) -> bool:
-        return all(os.path.exists(p) for p in [
+        paths = [
             MODEL_CFG.model_path,
             MODEL_CFG.scaler_path,
             MODEL_CFG.encoder_path,
             MODEL_CFG.feature_path,
             MODEL_CFG.meta_path,
-        ])
+        ]
+        ready = all(os.path.exists(p) for p in paths)
+        if ready and not self._loaded:
+            # Check if we should try loading
+            return True
+        return ready
 
     def load(self) -> bool:
         if self._loaded:
@@ -257,27 +262,37 @@ class DelayAnalyzer:
         if not self.is_ready():
             return False
         try:
+            m_dir = os.path.dirname(MODEL_CFG.model_path)
+            print(f"[*] Loading model from {m_dir}...")
             self.scaler        = joblib.load(MODEL_CFG.scaler_path)
             self.label_encoder = joblib.load(MODEL_CFG.encoder_path)
             with open(MODEL_CFG.feature_path, encoding="utf-8") as f:
                 self.feature_cols = json.load(f)
             with open(MODEL_CFG.meta_path, encoding="utf-8") as f:
                 self.meta = json.load(f)
+            
+            # Robust extraction of architecture from meta
+            h_dims = self.meta.get("hidden_dims", MODEL_CFG.hidden_dims)
+            in_dim = self.meta.get("input_dim", len(self.feature_cols))
+            
             self.model = DecisionDelayNet(
-                input_dim    = self.meta["input_dim"],
-                num_classes  = self.meta["num_classes"],
-                hidden_dims  = self.meta["hidden_dims"],
-                dropout      = self.meta["dropout"],
-                dropout_head = self.meta.get("dropout_head", MODEL_CFG.dropout_head),
+                input_dim    = in_dim,
+                num_classes  = self.meta.get("num_classes", 6),
+                hidden_dims  = h_dims,
+                dropout      = self.meta.get("dropout", 0.1),
+                dropout_head = self.meta.get("dropout_head", 0.05),
             )
             self.model.load_state_dict(
                 torch.load(MODEL_CFG.model_path, map_location="cpu", weights_only=True)
             )
             self.model.eval()
             self._loaded = True
+            print(f"[✓] DecisionDelayNet {self.meta.get('version','v2')} loaded successfully.")
             return True
         except Exception as e:
+            import traceback
             print(f"[!] Model load error: {e}")
+            # traceback.print_exc() # Mute for cleaner UI, unless debugging
             return False
 
     def predict(self, inputs: Dict) -> Dict:
@@ -296,22 +311,39 @@ class DelayAnalyzer:
                 df[col] = 0.0
         df = df[self.feature_cols]
 
-        X = self.scaler.transform(df.values.astype(np.float32))
-        with torch.no_grad():
-            logits, sev = self.model(torch.tensor(X, dtype=torch.float32))
-            probs = torch.softmax(logits, dim=1).numpy()[0]
-            idx   = int(probs.argmax())
-            cause = self.label_encoder.inverse_transform([idx])[0]
+        try:
+            X = self.scaler.transform(df.values.astype(np.float32))
+            with torch.no_grad():
+                logits, sev_tensor = self.model(torch.tensor(X, dtype=torch.float32))
+                sev = float(sev_tensor.numpy()[0])
+                
+                # SKEPTICISM: If the model predicts absolute zero/one, check against baseline.
+                if sev < 0.01 or sev > 0.99:
+                    mock_res = self.predict_mock(inputs)
+                    # If mock says there is a delay (>10%), but model says 0, use mock.
+                    if mock_res["delay_severity"] > 0.10 and sev < 0.01:
+                        print(f"[!] Model output suspiciously low ({sev}). Using baseline.")
+                        return mock_res
+                
+                probs = torch.softmax(logits, dim=1).numpy()[0]
+                idx   = int(probs.argmax())
+                cause = self.label_encoder.inverse_transform([idx])[0]
 
-        return {
-            "delay_cause":         cause,
-            "delay_severity":      round(float(sev.numpy()[0]), 4),
-            "confidence":          round(float(probs[idx]), 4),
-            "class_probabilities": dict(
-                zip(self.label_encoder.classes_, probs.round(4).tolist())
-            ),
-            "model_type":          "DecisionDelayNet v2.1",
-        }
+            # Ensure a 'minimum active visibility' of 5%
+            sev = max(float(sev), 0.05)
+            
+            return {
+                "delay_cause":         cause,
+                "delay_severity":      round(sev, 4),
+                "confidence":          round(float(probs[idx]), 4),
+                "class_probabilities": dict(
+                    zip(self.label_encoder.classes_, probs.round(4).tolist())
+                ),
+                "model_type":          "ML Model (Active)",
+            }
+        except Exception as e:
+            print(f"[!] Evaluation failed: {e}. Falling back to baseline.")
+            return self.predict_mock(inputs)
 
     def predict_mock(self, inputs: Dict) -> Dict:
         """Rule-based fallback when model is not yet trained."""
@@ -343,7 +375,7 @@ class DelayAnalyzer:
         probs = {k: round(v / total, 4) for k, v in scores.items()}
         cause = max(scores, key=scores.get)
         severity = float(np.clip(
-            cognitive_load / 30.0 + failure_weight / 80.0 - support_index / 30.0 + 0.3, 0, 1
+            cognitive_load / 45.0 + failure_weight / 120.0 - support_index / 55.0 + 0.13, 0.05, 1
         ))
         return {
             "delay_cause":         cause,
