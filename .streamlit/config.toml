@@ -1,8 +1,8 @@
 [theme]
-primaryColor            = "#031c50"
-backgroundColor         = "#F8FAFC"
-secondaryBackgroundColor = "#EFF6FF"
-textColor               = "#0F172A"
+primaryColor            = "#6EE7F7"
+backgroundColor         = "#0B1120"
+secondaryBackgroundColor = "#131F35"
+textColor               = "#E2E8F0"
 font                    = "sans serif"
 
 [server]
@@ -11,6 +11,6 @@ port        = 8501
 enableCORS  = false
 
 [browser]
-gatherUsageStats  = false
-serverAddress     = "localhost"
-serverPort        = 8501
+gatherUsageStats = false
+serverAddress    = "localhost"
+serverPort       = 8501
