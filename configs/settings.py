@@ -23,7 +23,10 @@ DIRS = {
     "logs":    BASE_DIR / "logs",
 }
 for d in DIRS.values():
-    d.mkdir(parents=True, exist_ok=True)
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        pass
 
 
 # ══════════════════════════════════════════════════════════
@@ -70,7 +73,10 @@ class ModelConfig:
     num_workers: int  = 0
 
     def __post_init__(self):
-        os.makedirs(self.ckpt_dir, exist_ok=True)
+        try:
+            os.makedirs(self.ckpt_dir, exist_ok=True)
+        except OSError:
+            pass
 
 
 # ══════════════════════════════════════════════════════════
