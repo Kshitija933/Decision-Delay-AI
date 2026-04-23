@@ -383,9 +383,6 @@ if page == "🏠 Home":
 
     with main_left:
         st.markdown("""
-        <div style="text-align:center;margin-bottom:0.75rem;">
-          <h1 class="hero-title">Why do people know what to do —<br>but still don't act?</h1>
-        </div>
         <div style="text-align:center;margin-bottom:1rem;color:#94A3B8;font-size:0.95rem;line-height:1.6;">
           DecisionDelay AI diagnoses the psychological root cause of your inaction —
           and delivers science-backed nudges to break the delay loop.
