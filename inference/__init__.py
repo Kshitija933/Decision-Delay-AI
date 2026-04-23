@@ -1,0 +1,1 @@
+from inference.predict import run_prediction

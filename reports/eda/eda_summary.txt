@@ -1,0 +1,51 @@
+============================================================
+  DecisionDelay AI — EDA Summary
+============================================================
+
+Dataset shape    : (12120, 14)
+Total rows       : 12,120
+Duplicate rows   : 111
+Total missing    : 6,006
+
+Class distribution:
+delay_cause
+Decision Fatigue            4425
+Lack of Immediate Reward    3276
+Overwhelm / Complexity      2885
+Perfectionism               1188
+Fear of Failure              245
+Past Failure Loop            101
+
+Domain distribution:
+use_case
+Career Choices    4082
+Studying          3847
+Fitness           3828
+fitness            147
+studying           109
+career choices     107
+
+Descriptive statistics:
+       task_difficulty  time_to_reward  past_failure_loops  self_efficacy  stress_level  goal_clarity  social_support  intrinsic_motivation  habit_strength  distraction_level
+count        11520.000       11536.000           11492.000      11544.000     11528.000     11536.000       11525.000             11501.000       11508.000          11504.000
+mean             5.141           4.994               1.959          5.489         4.775         5.229           5.009                 5.098           3.193              4.859
+std              2.324           2.489               1.816          1.983         2.000         2.105           2.023                 2.004           1.909              2.012
+min             -4.370          -5.240              -5.300         -1.910        -2.680        -4.910          -2.780                -4.760          -3.410             -2.480
+25%              3.570           3.310               0.730          4.170         3.460         3.810           3.650                 3.720           1.890              3.480
+50%              5.080           4.960               1.960          5.500         4.780         5.230           5.000                 5.110           3.190              4.850
+75%              6.620           6.650               3.170          6.830         6.110         6.650           6.370                 6.450           4.490              6.200
+max             13.900          14.400               9.160         14.510        12.260        13.920          12.780                12.980          12.690             13.080
+
+Missing per column:
+task_difficulty         600
+time_to_reward          584
+past_failure_loops      628
+self_efficacy           576
+stress_level            592
+goal_clarity            584
+social_support          595
+intrinsic_motivation    619
+habit_strength          612
+distraction_level       616
+
+============================================================

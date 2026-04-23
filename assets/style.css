@@ -1,0 +1,227 @@
+/* ═══════════════════════════════════════════════════
+   DecisionDelay AI — Dark Mode Theme
+   Aesthetic: Deep Navy · Cyan Pulse · Violet Spark
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --cyan:      #6EE7F7;
+  --cyan-dim:  #38BDF8;
+  --cobalt:    #4F8EF7;
+  --violet:    #A78BFA;
+  --rose:      #FB7185;
+  --amber:     #FCD34D;
+  --mint:      #34D399;
+  --bg:        #0B1120;
+  --surface:   #131F35;
+  --surface2:  #1A2A45;
+  --surface3:  #1E3254;
+  --border:    rgba(110,231,247,0.12);
+  --border2:   rgba(110,231,247,0.06);
+  --text:      #E2E8F0;
+  --text-sub:  #94A3B8;
+  --muted:     #64748B;
+  --radius:    14px;
+  --shadow:    0 2px 20px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 40px rgba(0,0,0,0.5);
+  --glow:      0 0 24px rgba(110,231,247,0.15);
+}
+
+/* ── Base ── */
+html, body,
+[data-testid="stAppViewContainer"],
+[data-testid="stApp"] {
+  background: var(--bg) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 15.5px !important;
+  color: var(--text) !important;
+}
+
+/* ── Main content area ── */
+[data-testid="stMain"],
+section[data-testid="stMain"] > div {
+  background: var(--bg) !important;
+}
+
+/* ── Sidebar ── */
+[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #0D1A2E 0%, #0B1120 100%) !important;
+  border-right: 1px solid var(--border) !important;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.4) !important;
+}
+[data-testid="stSidebar"] * { color: var(--text) !important; }
+
+/* ── Headings ── */
+h1, h2, h3, h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: var(--text) !important;
+  letter-spacing: -0.02em;
+}
+
+/* ── Metric cards ── */
+[data-testid="metric-container"] {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 1rem !important;
+  box-shadow: var(--shadow) !important;
+}
+[data-testid="metric-container"] label {
+  color: var(--text-sub) !important;
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+[data-testid="stMetricValue"] {
+  color: var(--text) !important;
+  font-weight: 900 !important;
+  font-size: 1.7rem !important;
+}
+[data-testid="stMetricDelta"] {
+  color: var(--mint) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Buttons ── */
+.stButton > button {
+  background: linear-gradient(135deg, #1A4FA8, #2563EB) !important;
+  color: #FFFFFF !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  border: 1px solid rgba(110,231,247,0.2) !important;
+  border-radius: 10px !important;
+  padding: 0.65rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: 0 4px 16px rgba(26,79,168,0.4) !important;
+}
+.stButton > button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(110,231,247,0.25) !important;
+  border-color: rgba(110,231,247,0.4) !important;
+}
+
+/* ── Sliders ── */
+[data-testid="stSlider"] > div > div > div > div {
+  background: var(--cyan) !important;
+}
+
+/* ── Selectbox / inputs ── */
+.stSelectbox > div > div,
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+  background: var(--surface2) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  color: var(--text) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.92rem !important;
+}
+
+/* ── Plotly charts ── */
+.js-plotly-plot { border-radius: var(--radius) !important; }
+
+/* ── Tabs ── */
+[data-testid="stTabs"] button {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  color: var(--text-sub) !important;
+}
+[data-testid="stTabs"] button[aria-selected="true"] {
+  color: var(--cyan) !important;
+  border-bottom-color: var(--cyan) !important;
+  font-weight: 800 !important;
+}
+[data-testid="stTabs"] {
+  border-bottom-color: var(--border) !important;
+}
+
+/* ── Progress bar ── */
+[data-testid="stProgress"] > div > div {
+  background: linear-gradient(90deg, var(--cyan), var(--violet)) !important;
+}
+
+/* ── Expander ── */
+[data-testid="stExpander"] {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  background: var(--surface) !important;
+}
+[data-testid="stExpander"] summary {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Radio ── */
+[data-testid="stRadio"] label { font-size: 0.92rem !important; color: var(--text) !important; }
+
+/* ── Dataframe ── */
+[data-testid="stDataFrame"] {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+}
+
+/* ── Divider ── */
+hr { border-color: var(--border2) !important; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan-dim); }
+
+/* ── Spinner ── */
+[data-testid="stSpinner"] { color: var(--cyan) !important; }
+
+/* ── Alert/info boxes ── */
+[data-testid="stAlert"] {
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+}
+
+/* ── Widget labels ── */
+[data-testid="stWidgetLabel"],
+.stSelectbox label, .stSlider label,
+.stTextInput label, .stTextArea label,
+.stRadio label, .stCheckbox label {
+  color: var(--text-sub) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Alt Nudge Cards (Dropdown) ── */
+.alt-nudge-card {
+  background: rgba(30, 41, 59, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 1.1rem 1.25rem !important;
+  margin-bottom: 0.85rem !important;
+  transition: all 0.25s ease !important;
+}
+.alt-nudge-card:hover {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(110, 231, 247, 0.2) !important;
+  transform: translateX(4px);
+}
+.alt-card-header {
+  font-size: 0.68rem !important;
+  color: var(--text-sub) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+.alt-card-body {
+  font-size: 1rem !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.01em !important;
+}

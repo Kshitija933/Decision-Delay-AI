@@ -1,0 +1,53 @@
+=================================================================
+  DecisionDelay AI — Preprocessing Report
+=================================================================
+
+Raw shape          : (25250, 14)
+Processed shape    : (25000, 21)
+Duplicates removed : 250
+
+Output saved to    : C:\Users\Shree\OneDrive\Desktop\Major_Project\Decision_Delay_AI_V2\data\processed\decision_delay_dataset.csv
+
+Feature Engineering (6 derived features):
+  1. reward_proximity   = 1 / (time_to_reward + 1)
+  2. failure_weight     = past_failure_loops × (10 - self_efficacy)
+  3. motivation_deficit = (10 - intrinsic_motivation) × (10 - social_support)
+  4. cognitive_load     = task_difficulty + stress_level + distraction_level
+  5. support_index      = self_efficacy + social_support + habit_strength
+  6. reward_perception  = intrinsic_motivation / (time_to_reward + 1)
+
+Missing value imputation (median):
+  task_difficulty               :  1214 cells → median=5.06
+  time_to_reward                :  1231 cells → median=4.99
+  past_failure_loops            :  1258 cells → median=1.94
+  self_efficacy                 :  1224 cells → median=5.48
+  stress_level                  :  1204 cells → median=4.79
+  goal_clarity                  :  1259 cells → median=5.22
+  social_support                :  1248 cells → median=5.0
+  intrinsic_motivation          :  1213 cells → median=5.1
+  habit_strength                :  1277 cells → median=3.2
+  distraction_level             :  1281 cells → median=4.89
+
+Final feature columns (19):
+  task_difficulty, time_to_reward, past_failure_loops, self_efficacy, stress_level, goal_clarity, social_support, intrinsic_motivation, habit_strength, distraction_level, reward_proximity, failure_weight, motivation_deficit, cognitive_load, support_index, reward_perception, domain_Career Choices, domain_Fitness, domain_Studying
+
+Class distribution (processed):
+Decision Fatigue            9182
+Lack of Immediate Reward    6700
+Overwhelm / Complexity      6017
+Perfectionism               2358
+Fear of Failure              541
+Past Failure Loop            202
+
+Descriptive stats (engineered features):
+       reward_proximity  failure_weight  motivation_deficit  cognitive_load  support_index  reward_perception
+count         25000.000       25000.000           25000.000       25000.000      25000.000          25000.000
+mean              0.216           9.351              24.479          14.792         13.713              1.100
+std               0.163           8.677              14.118           3.487          3.265              0.974
+min               0.091           0.000               0.000           1.930          0.120              0.000
+25%               0.132           2.359              14.174          12.440         11.500              0.585
+50%               0.167           7.605              22.810          14.735         13.700              0.854
+75%               0.226          13.899              32.926          17.150         15.910              1.247
+max               1.000          66.866              97.000          27.980         25.590             10.000
+
+=================================================================
