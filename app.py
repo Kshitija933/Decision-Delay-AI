@@ -164,12 +164,13 @@ st.markdown("""
 }
 .project-name {
   font-family: 'Playfair Display', Georgia, serif !important;
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   font-weight: 800;
   font-style: normal;
   font-variant: small-caps;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
   background: linear-gradient(135deg,
     #3B4FE8 0%,
     #6A35C8 50%,
