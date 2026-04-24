@@ -37,8 +37,8 @@ st.markdown("""
   background: #131F35;
   border: 1px solid rgba(110,231,247,0.10);
   border-radius: 14px;
-  padding: 1.35rem 1.6rem;
-  margin-bottom: 0.75rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.65rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.35);
   color: #E2E8F0 !important;
   transition: box-shadow 0.2s ease;
@@ -56,12 +56,12 @@ st.markdown("""
   background: linear-gradient(135deg,rgba(110,231,247,0.06),rgba(167,139,250,0.06));
   border: 1.5px solid rgba(110,231,247,0.20);
   border-radius: 14px;
-  padding: 1.35rem 1.6rem;
-  margin: 0.75rem 0;
+  padding: 1rem 1.2rem;
+  margin: 0.6rem 0;
 }
 .nudge-prefix   { color: #64748B !important; font-size:0.8rem; font-family:'JetBrains Mono',monospace; margin-bottom:0.35rem; }
-.nudge-text     { color: #E2E8F0 !important; font-size:1.08rem; font-weight:700; line-height:1.55; }
-.nudge-strategy { color: #A78BFA !important; font-size:0.8rem; margin-top:0.5rem; font-weight:600; }
+.nudge-text     { color: #E2E8F0 !important; font-size:0.95rem; font-weight:700; line-height:1.5; }
+.nudge-strategy { color: #A78BFA !important; font-size:0.75rem; margin-top:0.4rem; font-weight:600; }
 
 /* ══ CAUSE BADGE ══ */
 .cause-badge {
@@ -110,16 +110,16 @@ st.markdown("""
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-size: 2.6rem;
+  font-size: 2.1rem;
   font-weight: 800;
-  line-height: 1.18;
+  line-height: 1.15;
   margin: 0;
 }
 .hero-sub {
   color: #94A3B8 !important;
-  font-size: 1.05rem;
-  margin-top: 0.6rem;
-  line-height: 1.65;
+  font-size: 0.92rem;
+  margin-top: 0.5rem;
+  line-height: 1.6;
 }
 
 /* ══ STEP NUMBER BADGE ══ */
@@ -139,7 +139,7 @@ st.markdown("""
 /* ══ PROJECT NAME HERO ══ */
 .project-hero {
   text-align: center;
-  padding: 2.2rem 1rem 1.4rem;
+  padding: 1.5rem 1rem 1rem;
   position: relative;
 }
 .project-hero::before {
@@ -164,11 +164,11 @@ st.markdown("""
 }
 .project-name {
   font-family: 'Playfair Display', Georgia, serif !important;
-  font-size: 4.8rem;
+  font-size: 3.6rem;
   font-weight: 800;
   font-style: normal;
   font-variant: small-caps;
-  line-height: 1.0;
+  line-height: 0.95;
   letter-spacing: 0.01em;
   background: linear-gradient(135deg,
     #3B4FE8 0%,
@@ -223,8 +223,8 @@ st.markdown("""
   text-align: left !important;
   border-radius: 10px !important;
   padding: 0.55rem 0.85rem !important;
-  font-size: 0.88rem !important;
-  margin-bottom: 0.25rem !important;
+  font-size: 0.82rem !important;
+  margin-bottom: 0.2rem !important;
   transition: all 0.15s ease !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -297,7 +297,7 @@ st.markdown("""
 .stExpander summary {
   color: #E2E8F0 !important;
   font-weight: 700 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.85rem !important;
 }
 .stExpander summary:hover {
   color: #6EE7F7 !important;
@@ -383,7 +383,7 @@ if page == "🏠 Home":
 
     with main_left:
         st.markdown("""
-        <div style="text-align:center;margin-bottom:1rem;color:#94A3B8;font-size:0.95rem;line-height:1.6;">
+        <div style="text-align:center;margin-bottom:0.75rem;color:#94A3B8;font-size:0.88rem;line-height:1.55;">
           DecisionDelay AI diagnoses the psychological root cause of your inaction —
           and delivers science-backed nudges to break the delay loop.
         </div>
@@ -392,30 +392,30 @@ if page == "🏠 Home":
         dc1, dc2, dc3 = st.columns(3, gap="small")
         with dc1:
             st.markdown("""<div class="da-card da-card-accent" style="text-align:center;">
-              <div style="font-size:2.2rem;">🏋️</div>
-              <div style="font-weight:800;font-size:1rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Fitness</div>
-              <div style="color:#64748B;font-size:0.84rem;">Gym, workout consistency</div>
+              <div style="font-size:1.8rem;">🏋️</div>
+              <div style="font-weight:800;font-size:0.92rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Fitness</div>
+              <div style="color:#64748B;font-size:0.78rem;">Gym, workout consistency</div>
             </div>""", unsafe_allow_html=True)
         with dc2:
             st.markdown("""<div class="da-card da-card-violet" style="text-align:center;">
-              <div style="font-size:2.2rem;">📚</div>
-              <div style="font-weight:800;font-size:1rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Studying</div>
-              <div style="color:#64748B;font-size:0.84rem;">Exam prep, daily habits</div>
+              <div style="font-size:1.8rem;">📚</div>
+              <div style="font-weight:800;font-size:0.92rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Studying</div>
+              <div style="color:#64748B;font-size:0.78rem;">Exam prep, daily habits</div>
             </div>""", unsafe_allow_html=True)
         with dc3:
             st.markdown("""<div class="da-card da-card-rose" style="text-align:center;">
-              <div style="font-size:2.2rem;">💼</div>
-              <div style="font-weight:800;font-size:1rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Career</div>
-              <div style="color:#64748B;font-size:0.84rem;">Applications, pivots, growth</div>
+              <div style="font-size:1.8rem;">💼</div>
+              <div style="font-weight:800;font-size:0.92rem;margin:0.4rem 0 0.2rem;color:#E2E8F0;">Career</div>
+              <div style="color:#64748B;font-size:0.78rem;">Applications, pivots, growth</div>
             </div>""", unsafe_allow_html=True)
 
         st.markdown("""<style>
         div[data-testid="stButton"] > button {
-          font-size:1.12rem !important; padding:1rem 2rem !important;
+          font-size:1rem !important; padding:0.7rem 1.4rem !important;
           border-radius:12px !important; letter-spacing:0.03em !important;
           background: linear-gradient(135deg,#6EE7F7,#A78BFA) !important;
           color: #0B1120 !important; font-weight:800 !important;
-          box-shadow: 0 0 24px rgba(110,231,247,0.3) !important;
+          box-shadow: 0 0 20px rgba(110,231,247,0.25) !important;
         }
         </style>""", unsafe_allow_html=True)
         if st.button("🎯  Run Self-Assessment  →", use_container_width=True):
@@ -431,11 +431,11 @@ if page == "🏠 Home":
             ("03","Diagnose","Identify root cause from 6 cognitive categories"),
             ("04","Nudge","Get an evidence-based behavioral intervention"),
         ]:
-            st.markdown(f"""<div style="display:flex;gap:0.9rem;align-items:flex-start;margin-bottom:0.85rem;">
+            st.markdown(f"""<div style="display:flex;gap:0.75rem;align-items:flex-start;margin-bottom:0.7rem;">
               <span class="step-num">{num}</span>
               <div>
-                <div style="font-weight:700;font-size:0.94rem;color:#E2E8F0;">{title}</div>
-                <div style="color:#64748B;font-size:0.82rem;margin-top:0.1rem;line-height:1.45;">{desc}</div>
+                <div style="font-weight:700;font-size:0.88rem;color:#E2E8F0;">{title}</div>
+                <div style="color:#64748B;font-size:0.75rem;margin-top:0.1rem;line-height:1.4;">{desc}</div>
               </div></div>""", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -446,10 +446,10 @@ if page == "🏠 Home":
             ("⏳","Lack of Immediate Reward","#6EE7F7"),("🔁","Past Failure Loop","#A78BFA"),
             ("🎯","Perfectionism","#FB923C"),("🧩","Decision Fatigue","#38BDF8"),
         ]:
-            st.markdown(f"""<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;">
+            st.markdown(f"""<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem;">
               <span>{icon}</span>
-              <div style="flex:1;font-size:0.86rem;color:#CBD5E1;font-weight:600;">{name}</div>
-              <div style="width:9px;height:9px;border-radius:50%;background:{color};
+              <div style="flex:1;font-size:0.8rem;color:#CBD5E1;font-weight:600;">{name}</div>
+              <div style="width:8px;height:8px;border-radius:50%;background:{color};
                           box-shadow:0 0 6px {color}60;flex-shrink:0;"></div>
             </div>""", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
