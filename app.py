@@ -164,13 +164,12 @@ st.markdown("""
 }
 .project-name {
   font-family: 'Playfair Display', Georgia, serif !important;
-  font-size: 2.8rem;
+  font-size: 3.4rem;
   font-weight: 800;
   font-style: normal;
   font-variant: small-caps;
-  line-height: 1.1;
+  line-height: 0.9;
   letter-spacing: -0.02em;
-  white-space: nowrap;
   background: linear-gradient(135deg,
     #3B4FE8 0%,
     #6A35C8 50%,
@@ -367,7 +366,7 @@ if page == "🏠 Home":
     # Project name hero
     st.markdown("""
     <div class="project-hero">
-      <span class="project-name">DecisionDelay AI</span>
+      <span class="project-name">DecisionDelay<br>AI</span>
       <div class="project-sub-row">
         <span class="project-badge">AI &times; Cognition</span>
         <span class="project-dot"></span>
